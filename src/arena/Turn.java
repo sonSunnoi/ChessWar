@@ -16,7 +16,7 @@ public class Turn {
         boardStateVector.add(now);
     }
 
-    public boolean move(BoardState boardState){
+    public boolean addBoardState(BoardState boardState){
         boardStateVector.add(boardState);
         //TODO: notify
     }

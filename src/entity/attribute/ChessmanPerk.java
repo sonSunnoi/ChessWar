@@ -1,5 +1,6 @@
 package entity.attribute;
 
+import arena.Player;
 import entity.Chessman;
 import entity.component.ChessmanEntity;
 

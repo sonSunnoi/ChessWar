@@ -10,14 +10,10 @@ public abstract class Chessman {
     protected int hp;
 
     protected MoveBehavior moveBehavior;
-    protected Player owner;
 
     protected boolean action;
     protected boolean isAlive;
 
-    public Chessman(Player owner){
-        this.owner = owner;
-    }
 
     public int attack(Chessman victim){
          return victim.receiveDamage(this);
@@ -66,10 +62,6 @@ public abstract class Chessman {
 
     public void setMoveBehavior(MoveBehavior moveBehavior) {
         this.moveBehavior = moveBehavior;
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 
     public boolean isAction() {

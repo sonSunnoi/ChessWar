@@ -5,8 +5,10 @@ import entity.Chessman;
 
 public abstract class ChessmanEntity extends Chessman {
 
+    protected Player owner;
+
     public ChessmanEntity(Player owner) {
-        super(owner);
+        this.owner = owner;
     }
 
 }

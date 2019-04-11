@@ -8,8 +8,9 @@ public class Turn {
     private int moveCount;
     private static final int MAX_MOVE = 5;
     private BoardState now;
-
-    public Turn(){
+    private Player player;
+    public Turn(Player player){
+        this.player = player;
         now = new NullBoardState();
         moveCount = 0;
         boardStateVector = new Vector<BoardState>();

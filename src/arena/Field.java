@@ -1,9 +1,8 @@
 package arena;
 
-import chessman.Chessman;
+import entity.Chessman;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Field {
 
@@ -18,10 +17,6 @@ public class Field {
         chessmen.add(chessman);
     }
 
-    public Field(Chessman... manychessman){
-        this();
-        chessmen.addAll(Arrays.asList(manychessman));
-    }
 
     public Field(Field field){
         this();

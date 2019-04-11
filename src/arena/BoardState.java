@@ -22,7 +22,7 @@ public class BoardState {
         try {
             return board[x][y];
         } catch (ArrayIndexOutOfBoundsException e){
-            return null;
+            return ;
         }
     }
 }

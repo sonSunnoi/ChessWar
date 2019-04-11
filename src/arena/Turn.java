@@ -4,10 +4,10 @@ import java.util.Vector;
 
 public class Turn {
 
-    Vector<BoardState> boardStateVector;
-    int moveCount;
+    private Vector<BoardState> boardStateVector;
+    private int moveCount;
     private static final int MAX_MOVE = 5;
-    BoardState now;
+    private BoardState now;
 
     public Turn(){
         now = new NullBoardState();

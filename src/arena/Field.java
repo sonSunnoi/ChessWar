@@ -1,6 +1,6 @@
 package arena;
 
-import entity.Chessman;
+import entity.component.Chessman;
 
 import java.util.ArrayList;
 
@@ -31,5 +31,17 @@ public class Field {
 
     public void setChessmen(ArrayList<Chessman> chessmen) {
         this.chessmen = chessmen;
+    }
+
+    public void highlight(){
+
+    }
+
+    public void unhighlight(){
+
+    }
+
+    public boolean addChessman() {
+
     }
 }

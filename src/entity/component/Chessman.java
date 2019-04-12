@@ -1,6 +1,7 @@
 package entity;
 
 import arena.Player;
+import arena.Position;
 import entity.movebehavior.MoveBehavior;
 
 public abstract class Chessman {
@@ -8,12 +9,12 @@ public abstract class Chessman {
     protected int damage;
     protected int defense;
     protected int hp;
-
-    protected MoveBehavior moveBehavior;
-
     protected boolean action;
     protected boolean isAlive;
 
+    protected MoveBehavior moveBehavior;
+    protected Player owner;
+    protected Position pos;
 
     public int attack(Chessman victim){
          return victim.receiveDamage(this);

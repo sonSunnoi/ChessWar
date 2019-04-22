@@ -9,12 +9,12 @@ public class MeleeAttackBehavior implements AttackBehavior {
     private Chessman attacker;
     private EventSystem eventSystem;
 
-    public MeleeAttackBehavior(Chessman attacker) {
+    public MeleeAttackBehavior(Chessman attacker, EventSystem eventSystem) {
         this.attacker = attacker;
     }
 
     @Override
-    public boolean canAttack(Chessman victim, EventSystem eventSystem) {
+    public boolean canAttack(Chessman victim) {
         if (attacker.getPos().equals(victim.getPos()) && !attacker.isAttacked()) {
             return true;
         }

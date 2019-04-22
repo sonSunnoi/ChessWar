@@ -1,43 +1,46 @@
 package dedicated;
 
-import arena.Turn;
-
-import java.util.ArrayList;
+import arena.Board;
+import arena.Player;
 
 public class GameState {
 
-    public static GameState instance = new GameState();
-    private ArrayList<Turn> turnList;
-    private ArrayList<Listener> listener;
     private int turnCount;
+    private EventSystem eventSystem;
+    private Player black;
+    private Player white;
+    private Board board;
 
-    private Subject gameStateSubject = new Subject() {
-        @Override
-        public void registerObserver() {
-
-        }
-
-        @Override
-        public void removeObserver() {
-
-        }
-
-        @Override
-        public void notifyObserver() {
-
-        }
+    public GameState(int turnCount, Player black, Player white, Board board) {
+        this.turnCount = turnCount;
+        this.black = black;
+        this.white = white;
+        this.board = board;
     }
 
-    private GameState(){
-        turnList = new ArrayList<Turn>();
-        turnCount = 0;
-    };
+    pub
 
-    public boolean addTurn(Turn turn){
-        gameStateSubject.notifyObserver();
-        turnCount = turnList.size();
+    public int getTurnCount() {
+        return turnCount;
     }
 
+    public void setTurnCount(int turnCount) {
+        this.turnCount = turnCount;
+    }
 
+    public Player getBlack() {
+        return black;
+    }
 
+    public void setBlack(Player black) {
+        this.black = black;
+    }
+
+    public Player getWhite() {
+        return white;
+    }
+
+    public void setWhite(Player white) {
+        this.white = white;
+    }
 }

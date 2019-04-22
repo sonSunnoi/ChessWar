@@ -1,19 +1,19 @@
 package arena;
 
 //one object per one stage in the board
-public class BoardState {
+public class Board {
 
     private Field[][] board;
-
-    public BoardState(){
-        board = new Field[16][16];
+    private static int BOARD_SIZE = 12;
+    public Board(){
+        board = new Field[BOARD_SIZE][BOARD_SIZE];
     }
 
     //copy constructor
-    public BoardState(BoardState boardState){
+    public Board(Board board){
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                board[i][j] = new Field(boardState.getField(i,j));
+                this.board[i][j] = new Field(board.getField(i,j));
             }
         }
     }

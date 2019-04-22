@@ -12,13 +12,14 @@ public class Position {
         this.y = y;
     }
 
-    public Position sum (Position pos){
+    public Position sum(Position pos) {
         return new Position(this.x + pos.getX(), this.y + pos.getY());
     }
 
-    public boolean isOnTheBoard(){
+    public boolean isOnTheBoard() {
         return !(x < 0 && x > 15 && y < 0 && y > 15);
     }
+
     public int getX() {
         return x;
     }

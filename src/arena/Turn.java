@@ -4,21 +4,21 @@ import java.util.Vector;
 
 public class Turn {
 
-    private Vector<BoardState> boardStateVector;
+    private Vector<Board> boardVector;
     private int moveCount;
     private static final int MAX_MOVE = 5;
-    private BoardState now;
+    private Board now;
     private Player player;
     public Turn(Player player){
         this.player = player;
-        now = new NullBoardState();
+        now = new NullBoard();
         moveCount = 0;
-        boardStateVector = new Vector<BoardState>();
-        boardStateVector.add(now);
+        boardVector = new Vector<Board>();
+        boardVector.add(now);
     }
 
-    public boolean addBoardState(BoardState boardState){
-        boardStateVector.add(boardState);
+    public boolean addBoardState(Board board){
+        boardVector.add(board);
         //TODO: notify
     }
 

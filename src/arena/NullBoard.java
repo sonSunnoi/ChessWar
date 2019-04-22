@@ -1,5 +1,5 @@
 package arena;
 
-public class NullBoardState extends BoardState {
+public class NullBoard extends Board {
 
 }

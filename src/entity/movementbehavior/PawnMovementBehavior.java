@@ -1,11 +1,11 @@
-package entity.movebehavior;
+package entity.movementbehavior;
 
 import arena.Field;
 
-public class PawnMoveBehavior implements MoveBehavior{
+public class PawnMovementBehavior implements MovementBehavior {
 
    //TODO: constant that about how to move
-    public PawnMoveBehavior(){
+    public PawnMovementBehavior(){
 
     }
 

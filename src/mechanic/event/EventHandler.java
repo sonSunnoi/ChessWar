@@ -1,4 +1,4 @@
-package event;
+package mechanic.event;
 
 public @interface EventHandler {
 }

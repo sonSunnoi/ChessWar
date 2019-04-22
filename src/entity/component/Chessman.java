@@ -1,27 +1,50 @@
-package entity;
+package entity.component;
 
 import arena.Player;
 import arena.Position;
-import entity.movebehavior.MoveBehavior;
+import entity.attackbehavior.AttackBehavior;
+import entity.movementbehavior.MovementBehavior;
+import dedicated.EventSystem;
 
 public abstract class Chessman {
 
     protected int damage;
     protected int defense;
     protected int hp;
-    protected boolean action;
+    protected boolean isAttacked;
+    protected boolean isMoved;
     protected boolean isAlive;
 
-    protected MoveBehavior moveBehavior;
+    protected EventSystem eventSystem;
+    protected MovementBehavior movementBehavior;
+    protected AttackBehavior attackBehavior;
     protected Player owner;
     protected Position pos;
 
-    public int attack(Chessman victim){
-         return victim.receiveDamage(this);
+    private Chessman() {
+        isAttacked = false;
+        isMoved = false;
+        isAlive = true;
     }
 
-    public int receiveDamage(Chessman attacker){
-        int inflict = Math.max(0,attacker.getDamage() - this.getDefense());
+    public Chessman(Player owner, Position pos, EventSystem eventSystem) {
+        this();
+        this.owner = owner;
+        this.pos = pos;
+        this.eventSystem = eventSystem;
+    }
+
+    public Chessman(Player owner, int x, int y) {
+        this.owner = owner;
+        this.pos = new Position(x, y);
+    }
+
+    public int attack(Chessman victim) {
+        return victim.receiveDamage(this);
+    }
+
+    public int receiveDamage(Chessman attacker) {
+        int inflict = Math.max(0, attacker.getDamage() - this.getDefense());
         setHp(this.hp - inflict);
         if (!isAlive) {
             //TODO: ChessKillEvent?
@@ -35,7 +58,7 @@ public abstract class Chessman {
     }
 
     public void setDamage(int damage) {
-        this.damage = Math.max(0,damage);
+        this.damage = Math.max(0, damage);
     }
 
     public int getDefense() {
@@ -43,7 +66,7 @@ public abstract class Chessman {
     }
 
     public void setDefense(int defense) {
-        this.defense = Math.max(0,defense);
+        this.defense = Math.max(0, defense);
     }
 
     public int getHp() {
@@ -51,26 +74,50 @@ public abstract class Chessman {
     }
 
     public void setHp(int hp) {
-        this.hp = Math.max(0,hp);
+        this.hp = Math.max(0, hp);
         if (this.hp == 0) {
             setAlive(false);
         }
     }
 
-    public MoveBehavior getMoveBehavior() {
-        return moveBehavior;
+    public MovementBehavior getMovementBehavior() {
+        return movementBehavior;
     }
 
-    public void setMoveBehavior(MoveBehavior moveBehavior) {
-        this.moveBehavior = moveBehavior;
+    public void setMovementBehavior(MovementBehavior movementBehavior) {
+        this.movementBehavior = movementBehavior;
     }
 
-    public boolean isAction() {
-        return action;
+    public AttackBehavior getAttackBehavior() {
+        return attackBehavior;
     }
 
-    public void setAction(boolean action) {
-        this.action = action;
+    public void setAttackBehavior(AttackBehavior attackBehavior) {
+        this.attackBehavior = attackBehavior;
+    }
+
+    public Position getPos() {
+        return pos;
+    }
+
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
+    public boolean isAttacked() {
+        return isAttacked;
+    }
+
+    public void setAttacked(boolean attacked) {
+        isAttacked = attacked;
+    }
+
+    public boolean isMoved() {
+        return isMoved;
+    }
+
+    public void setMoved(boolean moved) {
+        isMoved = moved;
     }
 
     public boolean isAlive() {
@@ -79,5 +126,9 @@ public abstract class Chessman {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
+    }
+
+    public EventSystem getEventSystem() {
+        return eventSystem;
     }
 }

@@ -1,6 +1,6 @@
 package arena;
 
-import entity.Chessman;
+import entity.component.Chessman;
 import entity.component.King;
 
 import java.util.ArrayList;

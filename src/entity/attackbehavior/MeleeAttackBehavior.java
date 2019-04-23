@@ -11,6 +11,7 @@ public class MeleeAttackBehavior implements AttackBehavior {
 
     public MeleeAttackBehavior(Chessman attacker, EventSystem eventSystem) {
         this.attacker = attacker;
+        this.eventSystem = eventSystem;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class MeleeAttackBehavior implements AttackBehavior {
             attacker.setAttacked(true);
             attacker.setMoved(true);
             eventSystem.dispatch(new ChessAttackEvent(attacker, victim));
-            return attacker.attack(victim);
+            return victim.receiveDamage(attacker);
         }
         return -1;
     }

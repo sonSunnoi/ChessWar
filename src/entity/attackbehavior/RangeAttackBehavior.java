@@ -11,7 +11,7 @@ public abstract class RangeAttackBehavior implements  AttackBehavior{
 
     protected Chessman attacker;
     protected EventSystem eventSystem;
-    protected ArrayList<Position> attackablePosition;
+    protected Position[] attackablePosition;
 
     @Override
     public boolean canAttack(Chessman victim) {
@@ -29,8 +29,8 @@ public abstract class RangeAttackBehavior implements  AttackBehavior{
             attacker.setAttacked(true);
             attacker.setMoved(true);
             eventSystem.dispatch(new ChessAttackEvent(attacker, victim));
-            return attacker.attack(victim);
+            return victim.receiveDamage(attacker);
         }
-        return 0;
+        return -1;
     }
 }

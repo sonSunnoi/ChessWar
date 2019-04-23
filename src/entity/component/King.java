@@ -12,6 +12,7 @@ public class King extends Chessman {
 
     public King(Player owner, Position pos) {
         super(owner, pos);
+
         setDamage(BASE_DAMAGE);
         setDefense(BASE_DEFENSE);
         setHp(BASE_HP);

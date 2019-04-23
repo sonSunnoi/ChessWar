@@ -16,6 +16,7 @@ public abstract class Chessman {
     protected boolean isAlive;
 
     protected EventSystem eventSystem;
+    protected ChessType chessType;
     protected MovementBehavior movementBehavior;
     protected AttackBehavior attackBehavior;
     protected Player owner;
@@ -40,7 +41,7 @@ public abstract class Chessman {
     }
 
     public int attack(Chessman victim) {
-        return victim.receiveDamage(this);
+        return attackBehavior.attack(victim);
     }
 
     public int receiveDamage(Chessman attacker) {
@@ -51,6 +52,13 @@ public abstract class Chessman {
         }
 
         return inflict;
+    }
+
+    public boolean isAlly(Chessman chessman){
+        //TODO: confirm that use == or equals
+        if(this.getOwner().equals(chessman.getOwner()))
+            return true;
+        return false;
     }
 
     public int getDamage() {
@@ -130,5 +138,9 @@ public abstract class Chessman {
 
     public EventSystem getEventSystem() {
         return eventSystem;
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 }

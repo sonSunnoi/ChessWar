@@ -1,4 +1,4 @@
-package entity;
+package entity.component;
 
 public enum ChessType {
     PAWN,
@@ -7,5 +7,4 @@ public enum ChessType {
     BISHOP,
     QUEEN,
     KING;
-
 }

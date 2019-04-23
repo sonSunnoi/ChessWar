@@ -5,7 +5,7 @@ import arena.Position;
 
 public interface MovementBehavior {
 
-    void getMoveablePosition();
+    Position[] getMoveablePosition();
     boolean isMovable(Position pos);
-    Field move(Board Position pos);
+    Field move(Position pos);
 }

@@ -2,41 +2,38 @@ package entity.movementbehavior;
 
 import arena.Field;
 import arena.Position;
+import dedicated.EventSystem;
 import entity.component.Chessman;
 
 public class KingMovementBehavior implements MovementBehavior {
 
     private Chessman chessman;
-    private static Position[] MOVEABLE_POSITION = {
-            new Position(-1,-1),
-            new Position(0,-1),
-            new Position(1,-1),
-            new Position(-1,0),
-            new Position(1,0),
-            new Position(-1,1),
-            new Position(0,1),
-            new Position(1,1),
-    };
+    private EventSystem eventSystem;
+    private  Position[] moveablePosition;
 
-    public KingMovementBehavior(Chessman chessman){
+    public KingMovementBehavior(Chessman chessman, EventSystem eventSystem){
         this.chessman = chessman;
-
+        this.eventSystem = eventSystem;
+        moveablePosition = new Position[]{
+                new Position(-1,-1),
+                new Position(0,-1),
+                new Position(1,-1),
+                new Position(-1,0),
+                new Position(1,0),
+                new Position(-1,1),
+                new Position(0,1),
+                new Position(1,1),
+        };
     }
-    @Override
-    public Arra showMoveable() {
-        for (Position: MOVEABLE_POSITION) {
 
-        }
-        return;
+    @Override
+    public Position[] getMoveablePosition() {
+        return moveablePosition;
     }
 
     @Override
     public boolean isMovable(Position pos) {
-        if(!chessman.isMoved()) {
-            if()
-            return true;
-        }
-        return false;
+
     }
 
 

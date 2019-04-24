@@ -1,6 +1,6 @@
 package exception;
 
-import mechanic.Turn;
+import mechanic.turn.Turn;
 
 public class UnexpectTurnCostException extends RuntimeException{
 

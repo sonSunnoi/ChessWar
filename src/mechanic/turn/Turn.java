@@ -1,4 +1,4 @@
-package mechanic;
+package mechanic.turn;
 
 import exception.UnexpectTurnCostException;
 import mechanic.command.Command;
@@ -11,7 +11,7 @@ public class Turn {
 
     private Stack<Command> commands;
 
-    public final static int MAX_TURN_COST = 10; //public cuz there is no more mutation.
+    public static final int MAX_TURN_COST = 10; //public cuz there is no more mutation.
     private int turnCost;
 
     public Turn() {
@@ -28,8 +28,6 @@ public class Turn {
             //TODO: Change output stream to game log
             System.out.print(e.toString());
         }
-
-
     }
 
     public void unexecuteCommand(){

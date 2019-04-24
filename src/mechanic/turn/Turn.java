@@ -39,6 +39,9 @@ public class Turn {
             throw new UnexpectTurnCostException(turnCost);
         else
             this.turnCost = turnCost;
+    }
 
+    public int getTurnCost() {
+        return turnCost;
     }
 }

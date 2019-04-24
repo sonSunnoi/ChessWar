@@ -1,6 +1,8 @@
-package mechanic;
+package mechanic.board;
 
 import exception.FieldOutOfBoardException;
+import mechanic.Field;
+import mechanic.Position;
 
 //one object per one stage in the board
 public class Board {
@@ -19,10 +21,10 @@ public class Board {
     public Field getField(Position position){
         try{
             return board[position.getY()][position.getX()];
-        } catch (FieldOutOfBoardException e){
-
-        } catch (Exception e){
-
+        } catch (ArrayIndexOutOfBoundsException e){
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

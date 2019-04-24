@@ -3,11 +3,12 @@ package mechanic.listener;
 import mechanic.event.EntityAttackEvent;
 import mechanic.event.EntityMoveEvent;
 import mechanic.event.EventHandler;
-import mechanic.listener.Listener;
+import mechanic.event.TurnEndEvent;
 
-public class EntityListener implements Listener {
 
-    public EntityListener() {
+public class ChessWarListener implements Listener {
+
+    public ChessWarListener() {
 
     }
 
@@ -24,6 +25,11 @@ public class EntityListener implements Listener {
 
         //TODO: onKingMove and give or remove buff
         //TODO: onEntityMove and give or remove
+    }
+
+    @EventHandler
+    public void onTurnEnd(TurnEndEvent event){
+        //TODO: change people turn
     }
 
 }

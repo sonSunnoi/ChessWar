@@ -1,7 +1,7 @@
 package mechanic.turn;
 
 import gui.TurnControllerGUI;
-import mechanic.event.Listener;
+import mechanic.listener.Listener;
 
 public class TurnController implements Listener {
 

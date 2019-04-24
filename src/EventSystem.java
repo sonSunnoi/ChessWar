@@ -1,24 +1,24 @@
 import mechanic.event.Event;
 import mechanic.event.EventHandler;
-import mechanic.event.Listener;
+import mechanic.listener.Listener;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class EventSystem {
-    private List<mechanic.event.Listener> listeners;
+    private List<Listener> listeners;
 
     public EventSystem() {
         this.listeners = new ArrayList<>();
     }
 
-    public void register(mechanic.event.Listener listener) {
+    public void register(Listener listener) {
         listeners.add(listener);
     }
 
     public void dispatch(Event event) {
-        for (mechanic.event.Listener listener : listeners) {
+        for (Listener listener : listeners) {
             Method[] methods = listener.getClass().getMethods();
             for (Method m : methods) {
                 if (m.isAnnotationPresent(EventHandler.class)) {

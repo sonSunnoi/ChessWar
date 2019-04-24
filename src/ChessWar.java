@@ -3,7 +3,7 @@ import javafx.stage.Stage;
 import mechanic.event.EntityAttackEvent;
 import mechanic.event.EntityMoveEvent;
 import mechanic.event.EventHandler;
-import mechanic.event.Listener;
+import mechanic.listener.Listener;
 
 public class ChessWar extends Application {
 

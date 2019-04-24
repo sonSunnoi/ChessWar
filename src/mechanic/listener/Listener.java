@@ -1,4 +1,4 @@
-package mechanic.event;
+package mechanic.listener;
 
 public interface Listener {
 }

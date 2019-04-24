@@ -1,48 +1,25 @@
 package mechanic;
 
 import entity.Chessman;
+import gui.FieldGUI;
 
 import java.util.ArrayList;
 
 public class Field {
 
-    private Chessman whoIsHere;
-    private Chessman deadHere;
+    private Chessman chessman;
+    private boolean moveHighlight;
+    private boolean attackHighlight;
+    private FieldGUI fieldGUI;
 
     public Field(){
-        chessmen = new ArrayList<Chessman>();
+        moveHighlight = false;
+        attackHighlight = false;
     }
 
     public Field(Chessman chessman){
-        this();
-        chessmen.add(chessman);
+        this.chessman = chessman;
     }
 
 
-    public Field(Field field){
-        this();
-        field.getChessmen().stream().forEach((c) -> chessmen.add(c.copy()));
-        //TODO: Mo check deep copy and is this lambda correct?
-    }
-
-    //not deep get
-    public ArrayList<Chessman> getChessmen() {
-        return chessmen;
-    }
-
-    public void setChessmen(ArrayList<Chessman> chessmen) {
-        this.chessmen = chessmen;
-    }
-
-    public void highlight(){
-
-    }
-
-    public void unhighlight(){
-
-    }
-
-    public boolean addChessman() {
-
-    }
 }

@@ -1,11 +1,9 @@
 package entity.attackbehavior;
 
-import arena.Position;
-import dedicated.EventSystem;
-import entity.component.Chessman;
-import mechanic.event.ChessAttackEvent;
-
-import java.util.ArrayList;
+import mechanic.Position;
+import EventSystem;
+import entity.Chessman;
+import mechanic.event.EntityAttackEvent;
 
 public abstract class RangeAttackBehavior implements  AttackBehavior{
 
@@ -28,7 +26,7 @@ public abstract class RangeAttackBehavior implements  AttackBehavior{
         if (canAttack(victim)) {
             attacker.setAttacked(true);
             attacker.setMoved(true);
-            eventSystem.dispatch(new ChessAttackEvent(attacker, victim));
+            eventSystem.dispatch(new EntityAttackEvent(attacker, victim));
             return victim.receiveDamage(attacker);
         }
         return -1;

@@ -1,12 +1,13 @@
-package arena;
+package mechanic;
 
-import entity.component.Chessman;
+import entity.Chessman;
 
 import java.util.ArrayList;
 
 public class Field {
 
-    private ArrayList<Chessman> chessmen;
+    private Chessman whoIsHere;
+    private Chessman deadHere;
 
     public Field(){
         chessmen = new ArrayList<Chessman>();

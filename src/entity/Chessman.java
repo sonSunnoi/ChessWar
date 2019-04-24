@@ -1,10 +1,10 @@
-package entity.component;
+package entity;
 
-import arena.Player;
-import arena.Position;
+import mechanic.Player;
+import mechanic.Position;
 import entity.attackbehavior.AttackBehavior;
 import entity.movementbehavior.MovementBehavior;
-import dedicated.EventSystem;
+import EventSystem;
 
 public abstract class Chessman {
 
@@ -60,6 +60,8 @@ public abstract class Chessman {
             return true;
         return false;
     }
+
+
 
     public int getDamage() {
         return damage;

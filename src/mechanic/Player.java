@@ -1,7 +1,7 @@
-package arena;
+package mechanic;
 
-import entity.component.Chessman;
-import entity.component.King;
+import entity.Chessman;
+import entity.King;
 
 import java.util.ArrayList;
 

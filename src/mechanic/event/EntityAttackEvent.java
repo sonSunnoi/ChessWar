@@ -1,13 +1,13 @@
 package mechanic.event;
 
-import entity.component.Chessman;
+import entity.Chessman;
 
-public class ChessAttackEvent implements Event {
+public class EntityAttackEvent implements Event {
 
     private Chessman attacker;
     private Chessman victim;
 
-    public ChessAttackEvent(Chessman attacker, Chessman victim) {
+    public EntityAttackEvent(Chessman attacker, Chessman victim) {
         this.attacker = attacker;
         this.victim = victim;
     }

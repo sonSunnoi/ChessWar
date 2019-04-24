@@ -1,7 +1,7 @@
-package entity.component;
+package entity;
 
-import arena.Player;
-import arena.Position;
+import mechanic.Player;
+import mechanic.Position;
 import entity.attackbehavior.MeleeAttackBehavior;
 
 public class King extends Chessman {

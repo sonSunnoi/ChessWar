@@ -1,11 +1,10 @@
 package entity.movementbehavior;
 
-import arena.Field;
-import arena.Position;
-import dedicated.EventSystem;
-import entity.component.Chessman;
+import mechanic.Field;
+import mechanic.Position;
+import EventSystem;
+import entity.Chessman;
 import exception.FieldOutOfBoardException;
-import mechanic.event.Event;
 
 public class PawnMovementBehavior implements MovementBehavior {
 

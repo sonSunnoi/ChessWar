@@ -1,5 +1,3 @@
-package dedicated;
-
 import mechanic.event.Event;
 import mechanic.event.EventHandler;
 import mechanic.event.Listener;

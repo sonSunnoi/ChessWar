@@ -1,7 +1,7 @@
-package entity.component;
+package entity;
 
-import arena.Player;
-import arena.Position;
+import mechanic.Player;
+import mechanic.Position;
 
 public class Rook extends Chessman {
 

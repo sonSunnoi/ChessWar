@@ -1,7 +1,7 @@
 package entity.movementbehavior;
 
-import arena.Field;
-import arena.Position;
+import mechanic.Field;
+import mechanic.Position;
 
 public interface MovementBehavior {
 

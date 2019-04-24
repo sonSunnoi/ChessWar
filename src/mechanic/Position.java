@@ -1,4 +1,4 @@
-package arena;
+package mechanic;
 
 import java.util.Objects;
 

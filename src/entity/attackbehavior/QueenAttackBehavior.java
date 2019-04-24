@@ -1,10 +1,8 @@
 package entity.attackbehavior;
 
-import arena.Position;
-import dedicated.EventSystem;
-import entity.component.Chessman;
-
-import java.util.ArrayList;
+import mechanic.Position;
+import EventSystem;
+import entity.Chessman;
 
 public class QueenAttackBehavior extends RangeAttackBehavior {
 

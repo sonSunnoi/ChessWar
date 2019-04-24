@@ -1,4 +1,4 @@
-package entity.component;
+package entity;
 
 public enum ChessType {
     PAWN,

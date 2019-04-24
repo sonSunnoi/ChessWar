@@ -1,8 +1,8 @@
 package entity.attackbehavior;
 
-import dedicated.EventSystem;
-import entity.component.Chessman;
-import mechanic.event.ChessAttackEvent;
+import EventSystem;
+import entity.Chessman;
+import mechanic.event.EntityAttackEvent;
 
 public class MeleeAttackBehavior implements AttackBehavior {
 
@@ -27,7 +27,7 @@ public class MeleeAttackBehavior implements AttackBehavior {
         if (canAttack(victim)) {
             attacker.setAttacked(true);
             attacker.setMoved(true);
-            eventSystem.dispatch(new ChessAttackEvent(attacker, victim));
+            eventSystem.dispatch(new EntityAttackEvent(attacker, victim));
             return victim.receiveDamage(attacker);
         }
         return -1;

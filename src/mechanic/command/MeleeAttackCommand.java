@@ -1,8 +1,9 @@
 package mechanic.command;
 
-public class RangeMoveCommand implements Command {
+public class MeleeAttackCommand implements  Command{
 
-    private static int COST = 2;
+    private static int COST = 1;
+
 
     @Override
     public void execute() {

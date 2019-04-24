@@ -1,9 +1,7 @@
-package dedicated;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
-import mechanic.event.ChessAttackEvent;
-import mechanic.event.ChessmanMoveEvent;
+import mechanic.event.EntityAttackEvent;
+import mechanic.event.EntityMoveEvent;
 import mechanic.event.EventHandler;
 import mechanic.event.Listener;
 
@@ -27,7 +25,7 @@ public class ChessWar extends Application {
         eventSystem.register(new Listener() {
 
             @EventHandler
-            public void onMoveEvent(ChessmanMoveEvent event){
+            public void onMoveEvent(EntityMoveEvent event){
                 //sound play
             }
 
@@ -35,7 +33,7 @@ public class ChessWar extends Application {
         eventSystem.register(new Listener() {
 
             @EventHandler
-            public void onAttackEvent(ChessAttackEvent event){
+            public void onAttackEvent(EntityAttackEvent event){
                 //sound play
             }
 

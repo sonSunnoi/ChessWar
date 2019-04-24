@@ -1,6 +1,6 @@
 package entity.attackbehavior;
 
-import entity.component.Chessman;
+import entity.Chessman;
 
 public interface AttackBehavior {
 

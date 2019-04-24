@@ -16,9 +16,9 @@ public class TurnControllerGUI extends HBox {
     private Button confirmButton; //confirm or Endturn button
     private Label showTurnCost;
 
-    public TurnControllerGUI(){
+    public TurnControllerGUI() {
         undoButton = new Button(UNDO_MESSAGE);
-        showTurnCost = new  Label();
+        showTurnCost = new Label();
         confirmButton = new Button(CONFIRM_MESSAGE);
 
         setSpacing(40);

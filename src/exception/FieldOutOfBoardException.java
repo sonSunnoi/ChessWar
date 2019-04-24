@@ -1,5 +1,5 @@
 package exception;
 
-public class FieldOutOfBoardException extends RuntimeException{
+public class FieldOutOfBoardException extends Exception{
 
 }

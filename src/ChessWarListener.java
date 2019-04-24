@@ -10,7 +10,7 @@ public class ChessWarListener implements Listener {
     }
 
     @EventHandler
-    public void onEntityAttack(EntityAttackEvent) {
+    public void onEntityAttack(EntityAttackEvent event) {
 
         //TODO: set sound
         //TODO: spawn skeleton if have time

@@ -2,6 +2,7 @@ package chesswar.mechanic.board;
 
 import chesswar.entity.Chessman;
 import chesswar.gui.FieldGUI;
+import chesswar.mechanic.Position;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -11,9 +12,11 @@ import javafx.scene.paint.Color;
 public class Field {
 
     private Chessman chessman;
-
+    private Position position;
     private boolean isHighlight;
     private FieldGUI fieldGUI;
+    private Highlight highlight;
+
 
     public Field() {
         isHighlight = false;
@@ -27,20 +30,36 @@ public class Field {
 
     public void highlight(Highlight highlight) {
         isHighlight = true;
-        switch (highlight) {
+        setHighlight(highlight);
+    }
+
+    public Highlight getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(Highlight highlight) {
+        this.highlight = highlight;
+        switch (getHighlight()) {
             case MOVE:
                 fieldGUI.setBackground(new Background(new BackgroundFill(Color.BURLYWOOD, CornerRadii.EMPTY, Insets.EMPTY)));
                 break;
             case ATTACK:
                 fieldGUI.setBackground(new Background(new BackgroundFill(Color.TOMATO, CornerRadii.EMPTY, Insets.EMPTY)));
+                break;
+            case SELF:
+                fieldGUI.setBackground(new Background(new BackgroundFill(Color.CYAN, CornerRadii.EMPTY, Insets.EMPTY)));
+                break;
+            case NONE:
+                fieldGUI.setBackground(new Background(new BackgroundFill(fieldGUI.getDefaultColor(), CornerRadii.EMPTY, Insets.EMPTY)));
         }
     }
 
     public void unhighlight() {
         isHighlight = false;
-        fieldGUI.setBackground(new Background(new BackgroundFill(fieldGUI.getDefaultColor(), CornerRadii.EMPTY, Insets.EMPTY)));
-
+        setHighlight(Highlight.NONE);
     }
+
+
 
     public FieldGUI getFieldGUI() {
         return fieldGUI;
@@ -62,4 +81,5 @@ public class Field {
     public void setChessman(Chessman chessman) {
         this.chessman = chessman;
     }
+
 }

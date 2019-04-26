@@ -15,18 +15,18 @@ public abstract class Chessman {
     protected boolean isMoved;
     protected boolean isAlive;
 
+    protected Player owner;
     protected ChessType chessType;
+    protected AttackType attackType;
     protected MovementBehavior movementBehavior;
     protected AttackBehavior attackBehavior;
-    protected Player owner;
-    protected Position pos;
 
-    private Chessman() {
+
+    public Chessman(Player player) {
+        this.owner = player;
         isAttacked = false;
         isMoved = false;
-        isAlive = true;
     }
-
 
     public int attack(Chessman victim) {
         return attackBehavior.attack(victim);
@@ -38,14 +38,15 @@ public abstract class Chessman {
         return inflict;
     }
 
-    public boolean isAlly(Chessman chessman){
+    public boolean isAlly(Chessman chessman) {
         //TODO: confirm that use == or equals
-        if(this.getOwner().equals(chessman.getOwner()))
+        if (this.getOwner() == chessman.getOwner()){
             return true;
+        }
         return false;
     }
 
-
+    //below this is getter setter
 
     public int getDamage() {
         return damage;
@@ -71,6 +72,8 @@ public abstract class Chessman {
         this.hp = Math.max(0, hp);
         if (this.hp == 0) {
             setAlive(false);
+        } else {
+            setAlive(true);
         }
     }
 
@@ -90,14 +93,6 @@ public abstract class Chessman {
         this.attackBehavior = attackBehavior;
     }
 
-    public Position getPos() {
-        return pos;
-    }
-
-    public void setPos(Position pos) {
-        this.pos = pos;
-    }
-
     public boolean isAttacked() {
         return isAttacked;
     }
@@ -109,7 +104,6 @@ public abstract class Chessman {
     public boolean isMoved() {
         return isMoved;
     }
-
     public void setMoved(boolean moved) {
         isMoved = moved;
     }
@@ -120,6 +114,13 @@ public abstract class Chessman {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
+    }
+    public ChessType getChessType() {
+        return chessType;
+    }
+
+    public AttackType getAttackType() {
+        return attackType;
     }
 
     public Player getOwner() {

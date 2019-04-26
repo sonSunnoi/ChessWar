@@ -1,50 +1,50 @@
 package chesswar.entity.movementbehavior;
 
-import chesswar.mechanic.board.Field;
 import chesswar.mechanic.Position;
+import chesswar.mechanic.board.Field;
 import chesswar.mechanic.event.EventSystem;
 import chesswar.entity.Chessman;
 
-public class KingMovementBehavior implements MovementBehavior {
+public final class KingMovementBehavior implements MovementBehavior {
+
+    private static final Position[] MOVEABLE_POSITION = new Position[]{
+            new Position(-1, -1),
+            new Position(0, -1),
+            new Position(1, -1),
+            new Position(-1, 0),
+            new Position(1, 0),
+            new Position(-1, 1),
+            new Position(0, 1),
+            new Position(1, 1),
+    };
 
     private Chessman chessman;
-    private EventSystem eventSystem;
-    private  Position[] moveablePosition;
 
-    public KingMovementBehavior(Chessman chessman, EventSystem eventSystem){
+    public KingMovementBehavior(Chessman chessman) {
         this.chessman = chessman;
-        this.eventSystem = eventSystem;
-        moveablePosition = new Position[]{
-                new Position(-1,-1),
-                new Position(0,-1),
-                new Position(1,-1),
-                new Position(-1,0),
-                new Position(1,0),
-                new Position(-1,1),
-                new Position(0,1),
-                new Position(1,1),
-        };
     }
 
     @Override
     public Position[] getMoveablePosition() {
-        return moveablePosition;
+        return MOVEABLE_POSITION;
     }
 
     @Override
-    public boolean isMovable(Position pos) {
+    public boolean isMoveable(Field field) {
+        try {
+            if (field.getChessman() == null) {
+                return true;
+            }
+        } catch (NullPointerException e) {
 
-    }
-
-
-    @Override
-    public Field move(Position pos) {
-        if(isMovable(pos)) {
-            if()
-            chessman.setMoved(true);
-            chessman.setPos();
-            return field;
         }
+        return false;
+    }
 
+    @Override
+    public void move(Field before, Field after) {
+        after.setChessman(chessman);
+        before.setChessman(null);
+        chessman.setMoved(true);
     }
 }

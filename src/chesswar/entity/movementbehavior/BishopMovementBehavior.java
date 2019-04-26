@@ -1,21 +1,25 @@
 package chesswar.entity.movementbehavior;
 
-import chesswar.mechanic.board.Field;
-import chesswar.mechanic.Position;
 import chesswar.entity.Chessman;
+import chesswar.mechanic.Position;
+import chesswar.mechanic.board.Field;
 
-public  final class PawnMovementBehavior implements MovementBehavior {
+public final class BishopMovementBehavior implements MovementBehavior {
 
     private static final Position[] MOVEABLE_POSITION = new Position[]{
-            new Position(-1, 0),
-            new Position(1, 0),
-            new Position(0, -1),
-            new Position(0, 1)
+            new Position(-1, -1),
+            new Position(-2, -2),
+            new Position(1, -1),
+            new Position(2, -2),
+            new Position(-1, 1),
+            new Position(-2, 2),
+            new Position(1, 1),
+            new Position(2, 2),
     };
 
     private Chessman chessman;
 
-    public PawnMovementBehavior(Chessman chessman) {
+    public BishopMovementBehavior(Chessman chessman) {
         this.chessman = chessman;
     }
 

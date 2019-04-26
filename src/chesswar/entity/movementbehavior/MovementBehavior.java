@@ -1,13 +1,13 @@
 package chesswar.entity.movementbehavior;
 
-import chesswar.mechanic.board.Field;
 import chesswar.mechanic.Position;
+import chesswar.mechanic.board.Field;
 
 public interface MovementBehavior {
 
-    boolean isMovable(Position pos);
+    boolean isMoveable(Field field);
 
-    Field move(Position pos);
+    void move(Field before, Field after);
 
     Position[] getMoveablePosition();
 }

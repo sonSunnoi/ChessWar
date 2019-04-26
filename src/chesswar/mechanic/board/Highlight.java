@@ -1,5 +1,5 @@
 package chesswar.mechanic.board;
 
 public enum Highlight {
-    MOVE, ATTACK
+    MOVE, ATTACK, SELF, NONE
 }

@@ -1,22 +1,20 @@
 package chesswar.entity.attackbehavior;
 
-import chesswar.mechanic.Position;
-import chesswar.mechanic.event.EventSystem;
 import chesswar.entity.Chessman;
-import chesswar.mechanic.event.EntityAttackEvent;
+import chesswar.mechanic.Position;
 
-public abstract class RangeAttackBehavior implements  AttackBehavior{
+public abstract class DefaultAttackBehavior implements AttackBehavior {
 
     protected Chessman attacker;
-    protected EventSystem eventSystem;
-    protected Position[] attackablePosition;
 
     @Override
     public boolean canAttack(Chessman victim) {
-        for(Position pos : attackablePosition){
-            if (victim.getPos().equals(attacker.getPos().sum(pos)) && !attacker.isAttacked()) {
+        try {
+            if (!attacker.isAttacked() && !attacker.isAlly(victim)) {
                 return true;
             }
+        } catch (NullPointerException e) {
+            return false;
         }
         return false;
     }
@@ -26,7 +24,6 @@ public abstract class RangeAttackBehavior implements  AttackBehavior{
         if (canAttack(victim)) {
             attacker.setAttacked(true);
             attacker.setMoved(true);
-            eventSystem.dispatch(new EntityAttackEvent(attacker, victim));
             return victim.receiveDamage(attacker);
         }
         return -1;

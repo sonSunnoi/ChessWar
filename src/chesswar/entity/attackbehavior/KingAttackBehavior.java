@@ -1,21 +1,22 @@
 package chesswar.entity.attackbehavior;
 
-import chesswar.mechanic.Position;
-import chesswar.mechanic.event.EventSystem;
 import chesswar.entity.Chessman;
-import chesswar.mechanic.event.EntityAttackEvent;
+import chesswar.mechanic.Position;
 
-public final class MeleeAttackBehavior extends DefaultAttackBehavior {
-
+public final class KingAttackBehavior extends DefaultAttackBehavior {
 
     private static final Position[] ATTACKABLE_POSITION = new Position[]{
+            new Position(-1, -1),
+            new Position(0, -1),
+            new Position(1, -1),
             new Position(-1, 0),
             new Position(1, 0),
-            new Position(0, -1),
-            new Position(0, 1)
+            new Position(-1, 1),
+            new Position(0, 1),
+            new Position(1, 1),
     };
 
-    public MeleeAttackBehavior(Chessman attacker) {
+    public KingAttackBehavior(Chessman attacker) {
         this.attacker = attacker;
     }
 
@@ -23,4 +24,5 @@ public final class MeleeAttackBehavior extends DefaultAttackBehavior {
     public Position[] getAttackablePosition() {
         return ATTACKABLE_POSITION;
     }
+
 }

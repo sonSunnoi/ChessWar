@@ -1,9 +1,9 @@
-package entity.movementbehavior;
+package chesswar.entity.movementbehavior;
 
-import mechanic.Field;
-import mechanic.Position;
-import EventSystem;
-import entity.Chessman;
+import chesswar.mechanic.board.Field;
+import chesswar.mechanic.Position;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.entity.Chessman;
 
 public class KingMovementBehavior implements MovementBehavior {
 

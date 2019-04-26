@@ -1,10 +1,10 @@
-package entity;
+package chesswar.entity;
 
-import mechanic.Player;
-import mechanic.Position;
-import entity.attackbehavior.AttackBehavior;
-import entity.movementbehavior.MovementBehavior;
-import EventSystem;
+import chesswar.mechanic.Player;
+import chesswar.mechanic.Position;
+import chesswar.entity.attackbehavior.AttackBehavior;
+import chesswar.entity.movementbehavior.MovementBehavior;
+import chesswar.mechanic.event.EventSystem;
 
 public abstract class Chessman {
 
@@ -15,7 +15,6 @@ public abstract class Chessman {
     protected boolean isMoved;
     protected boolean isAlive;
 
-    protected EventSystem eventSystem;
     protected ChessType chessType;
     protected MovementBehavior movementBehavior;
     protected AttackBehavior attackBehavior;
@@ -28,17 +27,6 @@ public abstract class Chessman {
         isAlive = true;
     }
 
-    public Chessman(Player owner, Position pos, EventSystem eventSystem) {
-        this();
-        this.owner = owner;
-        this.pos = pos;
-        this.eventSystem = eventSystem;
-    }
-
-    public Chessman(Player owner, int x, int y) {
-        this.owner = owner;
-        this.pos = new Position(x, y);
-    }
 
     public int attack(Chessman victim) {
         return attackBehavior.attack(victim);
@@ -47,10 +35,6 @@ public abstract class Chessman {
     public int receiveDamage(Chessman attacker) {
         int inflict = Math.max(0, attacker.getDamage() - this.getDefense());
         setHp(this.hp - inflict);
-        if (!isAlive) {
-            //TODO: ChessKillEvent?
-        }
-
         return inflict;
     }
 
@@ -136,10 +120,6 @@ public abstract class Chessman {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
-    }
-
-    public EventSystem getEventSystem() {
-        return eventSystem;
     }
 
     public Player getOwner() {

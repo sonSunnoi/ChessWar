@@ -1,4 +1,4 @@
-package entity;
+package chesswar.entity;
 
 public enum AttackType {
 

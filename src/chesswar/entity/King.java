@@ -1,8 +1,8 @@
-package entity;
+package chesswar.entity;
 
-import mechanic.Player;
-import mechanic.Position;
-import entity.attackbehavior.MeleeAttackBehavior;
+import chesswar.mechanic.Player;
+import chesswar.mechanic.Position;
+import chesswar.entity.attackbehavior.MeleeAttackBehavior;
 
 public class King extends Chessman {
 

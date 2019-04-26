@@ -1,8 +1,8 @@
-package entity.attackbehavior;
+package chesswar.entity.attackbehavior;
 
-import EventSystem;
-import entity.Chessman;
-import mechanic.event.EntityAttackEvent;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.entity.Chessman;
+import chesswar.mechanic.event.EntityAttackEvent;
 
 public class MeleeAttackBehavior implements AttackBehavior {
 

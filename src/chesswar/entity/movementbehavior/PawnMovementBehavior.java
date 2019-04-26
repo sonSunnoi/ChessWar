@@ -1,21 +1,21 @@
-package entity.movementbehavior;
+package chesswar.entity.movementbehavior;
 
-import mechanic.Field;
-import mechanic.Position;
-import EventSystem;
-import entity.Chessman;
-import exception.FieldOutOfBoardException;
+import chesswar.mechanic.board.Board;
+import chesswar.mechanic.board.Field;
+import chesswar.mechanic.Position;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.entity.Chessman;
 
 public class PawnMovementBehavior implements MovementBehavior {
 
    //TODO: constant that about how to move
     private Position[] moveablePosition;
     private Chessman chessman;
-    private EventSystem eventSystem;
+    private Board board;
 
-    public PawnMovementBehavior(Chessman chessman, EventSystem eventSystem) {
+    public PawnMovementBehavior(Chessman chessman,Board board) {
         this.chessman = chessman;
-        this.eventSystem = eventSystem;
+        this.board = board;
         moveablePosition = new Position[] {
                 new Position(-1,0),
                 new Position(1,0),
@@ -31,9 +31,10 @@ public class PawnMovementBehavior implements MovementBehavior {
     @Override
     public boolean isMovable(Position pos) {
         try{
-            c
-        } catch (FieldOutOfBoardException e){
-            return false;
+           if(board.getField(pos).getChessman() == null)
+               return true;
+        } catch (NullPointerException e){
+
         }
         return false;
     }

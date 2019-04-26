@@ -1,7 +1,7 @@
-package entity;
+package chesswar.entity;
 
-import mechanic.Player;
-import mechanic.Position;
+import chesswar.mechanic.Player;
+import chesswar.mechanic.Position;
 
 public class Rook extends Chessman {
 

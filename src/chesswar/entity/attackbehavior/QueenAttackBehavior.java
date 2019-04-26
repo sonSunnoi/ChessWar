@@ -1,8 +1,8 @@
-package entity.attackbehavior;
+package chesswar.entity.attackbehavior;
 
-import mechanic.Position;
-import EventSystem;
-import entity.Chessman;
+import chesswar.mechanic.Position;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.entity.Chessman;
 
 public class QueenAttackBehavior extends RangeAttackBehavior {
 

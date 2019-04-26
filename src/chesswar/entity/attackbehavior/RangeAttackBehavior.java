@@ -1,9 +1,9 @@
-package entity.attackbehavior;
+package chesswar.entity.attackbehavior;
 
-import mechanic.Position;
-import EventSystem;
-import entity.Chessman;
-import mechanic.event.EntityAttackEvent;
+import chesswar.mechanic.Position;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.entity.Chessman;
+import chesswar.mechanic.event.EntityAttackEvent;
 
 public abstract class RangeAttackBehavior implements  AttackBehavior{
 

@@ -1,4 +1,4 @@
-package entity.attackbehavior;
+package chesswar.entity.attackbehavior;
 
 public class RookAttackBehavior extends RangeAttackBehavior {
 

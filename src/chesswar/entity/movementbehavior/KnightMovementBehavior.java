@@ -4,7 +4,7 @@ import chesswar.entity.Chessman;
 import chesswar.mechanic.Position;
 import chesswar.mechanic.board.Field;
 
-public final class HorseMovementBehavior implements MovementBehavior {
+public final class KnightMovementBehavior implements MovementBehavior {
     private static final Position[] MOVEABLE_POSITION = new Position[]{
             new Position(-1, -2),
             new Position(1, -2),
@@ -18,7 +18,7 @@ public final class HorseMovementBehavior implements MovementBehavior {
 
     private Chessman chessman;
 
-    public HorseMovementBehavior(Chessman chessman) {
+    public KnightMovementBehavior(Chessman chessman) {
         this.chessman = chessman;
     }
 

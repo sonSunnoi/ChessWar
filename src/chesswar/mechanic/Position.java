@@ -49,8 +49,4 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
-    /*
-    public Field getField() {
-        return ;//Field of pos
-    } */
 }

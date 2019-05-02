@@ -5,6 +5,7 @@ import chesswar.entity.movementbehavior.BishopMovementBehavior;
 import chesswar.mechanic.Player;
 
 public class Bishop extends Chessman {
+
     private static int BASE_DAMAGE = 2;
     private static int BASE_DEFENSE = 1;
     private static int BASE_HP = 2;

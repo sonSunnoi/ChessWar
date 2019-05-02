@@ -39,8 +39,7 @@ public abstract class Chessman {
     }
 
     public boolean isAlly(Chessman chessman) {
-        //TODO: confirm that use == or equals
-        if (this.getOwner() == chessman.getOwner()){
+        if (this.getOwner().equals(chessman.getOwner())) {
             return true;
         }
         return false;
@@ -104,6 +103,7 @@ public abstract class Chessman {
     public boolean isMoved() {
         return isMoved;
     }
+
     public void setMoved(boolean moved) {
         isMoved = moved;
     }
@@ -115,6 +115,7 @@ public abstract class Chessman {
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
+
     public ChessType getChessType() {
         return chessType;
     }

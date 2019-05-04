@@ -39,10 +39,11 @@ public abstract class Chessman {
     }
 
     public boolean isAlly(Chessman chessman) {
-        if (this.getOwner().equals(chessman.getOwner())) {
-            return true;
-        }
-        return false;
+        return this.getOwner().equals(chessman.getOwner());
+    }
+
+    public boolean isAlly(Player player) {
+        return player.equals(owner);
     }
 
     //below this is getter setter

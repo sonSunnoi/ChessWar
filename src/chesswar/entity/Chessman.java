@@ -6,6 +6,8 @@ import chesswar.entity.attackbehavior.AttackBehavior;
 import chesswar.entity.movementbehavior.MovementBehavior;
 import chesswar.mechanic.event.EventSystem;
 
+import java.util.Objects;
+
 public abstract class Chessman {
 
     protected int damage;
@@ -127,5 +129,20 @@ public abstract class Chessman {
 
     public Player getOwner() {
         return owner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Chessman)) return false;
+        Chessman chessman = (Chessman) o;
+        return Objects.equals(owner, chessman.owner) &&
+                chessType == chessman.chessType &&
+                attackType == chessman.attackType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner, chessType, attackType);
     }
 }

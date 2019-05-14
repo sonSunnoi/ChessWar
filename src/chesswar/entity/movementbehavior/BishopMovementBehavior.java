@@ -8,13 +8,13 @@ public final class BishopMovementBehavior implements MovementBehavior {
 
     private static final Position[] MOVEABLE_POSITION = new Position[]{
             new Position(-1, -1),
-            new Position(-2, -2),
             new Position(1, -1),
-            new Position(2, -2),
             new Position(-1, 1),
-            new Position(-2, 2),
             new Position(1, 1),
-            new Position(2, 2),
+            new Position(-2, -2),
+            new Position(2, -2),
+            new Position(-2, 2),
+            new Position(2, 2)
     };
 
     private Chessman chessman;

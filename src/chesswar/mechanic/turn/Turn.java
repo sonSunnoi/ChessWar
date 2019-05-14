@@ -46,4 +46,8 @@ public class Turn {
     public int getTurnCost() {
         return turnCost;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

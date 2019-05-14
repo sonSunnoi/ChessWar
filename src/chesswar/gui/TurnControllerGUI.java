@@ -26,7 +26,10 @@ public class TurnControllerGUI extends HBox {
         setSpacing(23);
         setPadding(new Insets(10));
         setHeight(50);
-        setWidth(200);
+        setMaxWidth(250);
+        setMinWidth(250);
+        showTurnCost.setMinWidth(35);
+        showTurnCost.setMaxWidth(35);
         getChildren().addAll(undoButton, showTurnCost, confirmButton);
         showTurnCost.setPadding(new Insets(5,0,0,0));
         showTurnCost.setText(String.format("0/%d", turnController.getTurn().MAX_TURN_COST));

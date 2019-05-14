@@ -1,6 +1,7 @@
 package chesswar.mechanic;
 
 import chesswar.entity.*;
+import chesswar.gui.ChessmanData;
 import chesswar.mechanic.board.BoardController;
 import chesswar.mechanic.board.Field;
 import chesswar.mechanic.board.Highlight;
@@ -24,11 +25,16 @@ public class ChessWarGame {
     private HashMap<Player, ArrayList<Chessman>> playerAndChess = new HashMap<>();
     private Player black;
     private Player white;
+    private boolean debugMode = false;
+    private ChessmanData chessmanDataFirst;
+    private ChessmanData chessmanDataSecond;
 
     public ChessWarGame() {
         eventSystem = new EventSystem();
         boardController = new BoardController(eventSystem);
         turnController = new TurnController(eventSystem);
+        chessmanDataFirst = new ChessmanData();
+        chessmanDataSecond = new ChessmanData();
         eventSystem.register(turnController);
         eventSystem.register(boardController);
         init();
@@ -37,12 +43,12 @@ public class ChessWarGame {
     private ArrayList<Position> cacheHighlightPosition;
     private Position cacheFirstActionPosition;
     private Position cacheSecondActionPosition;
-    private boolean isConfirmed = false;
+    private boolean isConfirmed = true;
 
     public void setFirstAction(Position position) {
         Field field = boardController.getBoard().getField(position); //field of clicked position
         Chessman chessman = field.getChessman(); //chessman that going to action
-        if (chessman != null) {
+        if (chessman != null && (chessman.getOwner().equals(turnController.getTurn().getPlayer()) || debugMode)) {
             cacheHighlightPosition = new ArrayList<>();
             cacheFirstActionPosition = position;
             if (!chessman.isAttacked()) {
@@ -65,6 +71,25 @@ public class ChessWarGame {
                         cacheHighlightPosition.add(pos);
                     }
                 });
+            }
+            //debug bishop by concrete
+            if (chessman.getChessType() == ChessType.BISHOP) {
+                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, 1)))) {
+                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))))).unhighlight();
+                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))));
+                }
+                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, 1)))) {
+                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))))).unhighlight();
+                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))));
+                }
+                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, -1)))) {
+                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))))).unhighlight();
+                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))));
+                }
+                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, -1)))) {
+                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))))).unhighlight();
+                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))));
+                }
             }
             field.highlight(Highlight.SELF);
             cacheHighlightPosition.add(position);
@@ -94,6 +119,11 @@ public class ChessWarGame {
             eventSystem.dispatch(new EntityMoveEvent(chessman, boardController.getBoard().getField(cacheFirstActionPosition), field));
         } else {
             System.out.println("Error at setSecondAction");
+        }
+        if (debugMode) {
+            chessman.setAttacked(false);
+            chessman.setMoved(false);
+            turnController.getTurn().setTurnCost(0);
         }
     }
 
@@ -158,6 +188,8 @@ public class ChessWarGame {
         boardController.getBoard().getField(new Position(7, 10)).setChessman(playerAndChess.get(white).get(9));
         boardController.getBoard().getField(new Position(9, 10)).setChessman(playerAndChess.get(white).get(10));
         boardController.getBoard().getField(new Position(11, 10)).setChessman(playerAndChess.get(white).get(11));
+
+        boardController.getBoardGUI().update();
     }
 
     public ArrayList<Position> getCacheHighlightPosition() {
@@ -202,5 +234,17 @@ public class ChessWarGame {
 
     public BoardController getBoardController() {
         return boardController;
+    }
+
+    public ChessmanData getChessmanDataFirst() {
+        return chessmanDataFirst;
+    }
+
+    public ChessmanData getChessmanDataSecond() {
+        return chessmanDataSecond;
+    }
+
+    public HashMap<Player, ArrayList<Chessman>> getPlayerAndChess() {
+        return playerAndChess;
     }
 }

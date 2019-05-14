@@ -10,4 +10,8 @@ public class TurnEndEvent implements Event {
     public TurnEndEvent(Player player) {
         this.player = player;
     }
+
+    public Player getPlayer() {
+        return player;
+    }
 }

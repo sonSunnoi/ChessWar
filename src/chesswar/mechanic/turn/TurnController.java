@@ -29,8 +29,10 @@ public class TurnController implements Listener {
         turnControllerGUI.update();
         if(turn.getTurnCost() > 0 && turn.getTurnCost() < Turn.MAX_TURN_COST){
             turnControllerGUI.getUndoButton().setDisable(false);
+            turnControllerGUI.getConfirmButton().setDisable(true);
         } else if (turn.getTurnCost() == 0) {
             turnControllerGUI.getUndoButton().setDisable(true);
+            turnControllerGUI.getConfirmButton().setDisable(true);
 
         } else if (turn.getTurnCost() == Turn.MAX_TURN_COST) {
             eventSystem.dispatch(new ReachTurnEndEvent());

@@ -1,31 +1,30 @@
 package chesswar.mechanic.board;
 
+import chesswar.gui.BoardGUI;
 import chesswar.mechanic.event.EventSystem;
 import chesswar.mechanic.listener.Listener;
 
 public class BoardController implements Listener {
 
     private Board board;
+    private BoardGUI boardGUI;
     private EventSystem eventSystem;
 
-    public BoardController(){
-        board = new Board();
+    public BoardController(EventSystem eventSystem) {
+        this.eventSystem = eventSystem;
+        board = new Board(eventSystem);
+        boardGUI = new BoardGUI(board);
     }
 
+    public void update() {
 
-    @Override
-    public EventSystem getEventSystem() {
-        return eventSystem;
     }
 
-    @Override
-    public void setEventSystem(EventSystem eventSystem) {
-        if(eventSystem == null) {
-            this.eventSystem = eventSystem;
-        }
+    public Board getBoard() {
+        return board;
     }
 
-    public void update(){
-
+    public BoardGUI getBoardGUI() {
+        return boardGUI;
     }
 }

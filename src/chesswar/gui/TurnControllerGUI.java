@@ -1,5 +1,6 @@
 package chesswar.gui;
 
+import chesswar.mechanic.turn.TurnController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,15 +15,27 @@ public class TurnControllerGUI extends HBox {
     private Button undoButton;
     private Button confirmButton; //confirm or Endturn button
     private Label showTurnCost;
+    private TurnController turnController;
 
-    public TurnControllerGUI() {
+    public TurnControllerGUI(TurnController turnController) {
+        this.turnController = turnController;
         undoButton = new Button(UNDO_MESSAGE);
         showTurnCost = new Label();
         confirmButton = new Button(CONFIRM_MESSAGE);
 
-        setSpacing(40);
+        setSpacing(23);
         setPadding(new Insets(10));
+        setHeight(50);
+        setWidth(200);
         getChildren().addAll(undoButton, showTurnCost, confirmButton);
+        showTurnCost.setPadding(new Insets(5,0,0,0));
+        showTurnCost.setText(String.format("0/%d", turnController.getTurn().MAX_TURN_COST));
+    }
+
+    public void update() {
+        showTurnCost.setText(String.format("%d/%d",
+                turnController.getTurn().getTurnCost(),
+                turnController.getTurn().MAX_TURN_COST));
     }
 
     public Button getUndoButton() {

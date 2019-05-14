@@ -3,6 +3,10 @@ package chesswar.mechanic.board;
 import chesswar.entity.Chessman;
 import chesswar.gui.FieldGUI;
 import chesswar.mechanic.Position;
+import chesswar.mechanic.event.EventSystem;
+import chesswar.mechanic.event.FieldClickEvent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -22,10 +26,11 @@ public class Field {
         isHighlight = false;
     }
 
-    public Field(FieldGUI fieldGUI) {
+    public Field(FieldGUI fieldGUI, Position position, EventSystem eventSystem) {
+        this.position = position;
         this.fieldGUI = fieldGUI;
         fieldGUI.setField(this);
-
+        setHighlight(Highlight.NONE);
     }
 
     public void highlight(Highlight highlight) {
@@ -82,4 +87,7 @@ public class Field {
         this.chessman = chessman;
     }
 
+    public Position getPosition() {
+        return position;
+    }
 }

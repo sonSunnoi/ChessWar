@@ -15,7 +15,6 @@ public final class EventSystem {
 
     public void register(Listener listener) {
         listeners.add(listener);
-        listener.setEventSystem(this);
     }
 
     public void dispatch(Event event) {
@@ -26,10 +25,10 @@ public final class EventSystem {
                     try {
                         invokeListener(listener, m, event);
                     } catch (Exception e) {
-                        System.err.println("Exception while trying to pass an event to the listener!");
-                        System.err.println("Event: " + event.getClass().getSimpleName() +
-                                ", Listener: " + listener.getClass().getSimpleName());
-                        e.printStackTrace();
+//                        System.err.println("Exception while trying to pass an event to the listener!");
+//                        System.err.println("Event: " + event.getClass().getSimpleName() +
+//                                ", Listener: " + listener.getClass().getSimpleName());
+//                        e.printStackTrace();
                     }
                 }
             }

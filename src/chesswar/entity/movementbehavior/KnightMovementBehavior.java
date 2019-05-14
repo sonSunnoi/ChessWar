@@ -13,7 +13,7 @@ public final class KnightMovementBehavior implements MovementBehavior {
             new Position(-2, 1),
             new Position(2, 1),
             new Position(-1, 2),
-            new Position(-1, 2),
+            new Position(1, 2),
     };
 
     private Chessman chessman;

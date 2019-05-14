@@ -1,6 +1,7 @@
 package chesswar.mechanic.turn;
 
 import chesswar.exception.UnexpectTurnCostException;
+import chesswar.mechanic.Player;
 import chesswar.mechanic.command.Command;
 
 import java.util.Stack;
@@ -8,11 +9,13 @@ import java.util.Stack;
 public class Turn {
 
     private Stack<Command> commands;
+    private Player player;
 
     public static final int MAX_TURN_COST = 10; //public cuz there is no more mutation.
     private int turnCost;
 
-    public Turn() {
+    public Turn(Player player) {
+        this.player = player;
         commands = new Stack<Command>();
         setTurnCost(0);
     }

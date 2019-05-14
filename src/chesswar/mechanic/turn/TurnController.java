@@ -10,8 +10,11 @@ public class TurnController implements Listener {
     private TurnControllerGUI turnControllerGUI;
     private EventSystem eventSystem;
 
-    public TurnController(TurnControllerGUI turnControllerGUI) {
-        this.turnControllerGUI = turnControllerGUI;
+    public TurnController(EventSystem eventSystem) {
+        this.eventSystem = eventSystem;
+        this.turnControllerGUI = new TurnControllerGUI(this);
+        turnControllerGUI.getUndoButton().setDisable(true);
+        turnControllerGUI.getConfirmButton().setDisable(true);
     }
 
     /**
@@ -23,11 +26,12 @@ public class TurnController implements Listener {
     }
 
     public void update() {
-
+        turnControllerGUI.update();
         if(turn.getTurnCost() > 0 && turn.getTurnCost() < Turn.MAX_TURN_COST){
             turnControllerGUI.getUndoButton().setDisable(false);
         } else if (turn.getTurnCost() == 0) {
             turnControllerGUI.getUndoButton().setDisable(true);
+
         } else if (turn.getTurnCost() == Turn.MAX_TURN_COST) {
             eventSystem.dispatch(new ReachTurnEndEvent());
         }
@@ -52,8 +56,11 @@ public class TurnController implements Listener {
         return eventSystem;
     }
 
-    public void setEventSystem(EventSystem eventSystem) {
-        if(eventSystem == null)
-            this.eventSystem = eventSystem;
+    public Turn getTurn() {
+        return turn;
+    }
+
+    public TurnControllerGUI getTurnControllerGUI() {
+        return turnControllerGUI;
     }
 }

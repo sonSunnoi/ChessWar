@@ -10,7 +10,6 @@ public class Player {
 
     private String name;
     private King king;
-    private ArrayList<Chessman> Chessmen;
 
     public Player(String name) {
         this.name = name;
@@ -31,5 +30,9 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    public void setKing(King king) {
+        this.king = king;
     }
 }

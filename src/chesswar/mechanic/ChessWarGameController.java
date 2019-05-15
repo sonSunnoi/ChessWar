@@ -33,7 +33,7 @@ public class ChessWarGameController implements Listener {
 
             chessWarGame.setFirstAction(click);
             chessWarGame.getChessmanDataFirst().setChessman(event.getField().getChessman());
-            System.out.println("First");
+//            System.out.println("First");
 
         } else if (chessWarGame.getCacheSecondActionPosition() == null
                 && event.getField().getHighlight() != Highlight.SELF
@@ -42,7 +42,7 @@ public class ChessWarGameController implements Listener {
             chessWarGame.setCacheSecondActionPosition(click);
             if(chessWarGame.getChessmanDataFirst().getChessman() != event.getField().getChessman())
                 chessWarGame.getChessmanDataSecond().setChessman(event.getField().getChessman());
-            System.out.println("waiting");
+//            System.out.println("waiting");
 
         } else if (chessWarGame.getCacheSecondActionPosition() == click) {
 
@@ -52,19 +52,18 @@ public class ChessWarGameController implements Listener {
             chessWarGame.resetAction();
             chessWarGame.getChessmanDataFirst().setChessman(null);
             chessWarGame.getChessmanDataSecond().setChessman(null);
-            System.out.println("action");
+//            System.out.println("action");
 
         } else {
 
             chessWarGame.resetAction();
             chessWarGame.getChessmanDataFirst().setChessman(null);
             chessWarGame.getChessmanDataSecond().setChessman(null);
-            System.out.println("cancelled");
+//            System.out.println("cancelled");
 
         }
         chessWarGame.getTurnController().update();
         chessWarGame.getBoardController().getBoardGUI().update();
-        //TODO: annoucement game win
 
     }
 
@@ -83,6 +82,8 @@ public class ChessWarGameController implements Listener {
             player = new Player("White");
         }
         chessWarGame.getTurnController().setTurn(new Turn(player));
+        chessWarGame.getChessmanDataFirst().setThisTurnPlayer(player);
+        chessWarGame.getChessmanDataSecond().setThisTurnPlayer(player);
         chessWarGame.getPlayerAndChess().get(event.getPlayer()).stream().forEach(chessman -> {
             chessman.setMoved(false);
             chessman.setAttacked(false);

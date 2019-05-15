@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 public class ChessWar extends Application {
 
     private ChessWarGameController gameController;
+//    private ChessWarCommandLine chessWarCommandLine;
     private ChessWarGame chessWarGame;
     private VBox leftPanel;
     public static void main(String[] args) {
@@ -38,6 +39,7 @@ public class ChessWar extends Application {
     @Override
     public void init() {
         gameController = new ChessWarGameController();
+//        chessWarCommandLine = new ChessWarCommandLine(gameController);
         chessWarGame = gameController.getChessWarGame();
         chessWarGame.getBoardController().getBoardGUI().setAlignment(Pos.BOTTOM_CENTER);
         chessWarGame.getTurnController().getTurnControllerGUI().setAlignment(Pos.BOTTOM_CENTER);

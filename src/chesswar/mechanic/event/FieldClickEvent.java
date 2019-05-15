@@ -8,7 +8,7 @@ public class FieldClickEvent implements Event{
     private EventSystem eventSystem;
     public FieldClickEvent(Field field) {
         this.field = field;
-        System.out.println(field.getPosition());
+//        System.out.println(field.getPosition());
     }
 
     public Field getField() {

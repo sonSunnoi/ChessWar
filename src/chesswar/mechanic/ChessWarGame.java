@@ -12,6 +12,7 @@ import chesswar.mechanic.command.RangeMoveCommand;
 import chesswar.mechanic.event.*;
 import chesswar.mechanic.turn.Turn;
 import chesswar.mechanic.turn.TurnController;
+import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class ChessWarGame {
     private EventSystem eventSystem;
     private TurnController turnController;
     private BoardController boardController;
-    private HashMap<Player, ArrayList<Chessman>> playerAndChess = new HashMap<>();
+    private HashMap<Player, ArrayList<Chessman>> playerAndChess;
     private Player black;
     private Player white;
     private boolean debugMode = false;
@@ -91,6 +92,7 @@ public class ChessWarGame {
                     cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))));
                 }
             }
+
             field.highlight(Highlight.SELF);
             cacheHighlightPosition.add(position);
         }
@@ -127,13 +129,22 @@ public class ChessWarGame {
         }
     }
 
-
     public void resetAction() {
         setCancelHighlight();
         cacheHighlightPosition = null;
         cacheFirstActionPosition = null;
         cacheSecondActionPosition = null;
         isConfirmed = false;
+        if(!white.isAlive()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Black wins the game!");
+            alert.showAndWait();
+        }
+        if(!black.isAlive()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("White wins the game!");
+            alert.showAndWait();
+        }
     }
 
     public void setCancelHighlight() {
@@ -141,6 +152,7 @@ public class ChessWarGame {
     }
 
     public void init() {
+        playerAndChess = new HashMap<>();
         black = new Player("Black");
         white = new Player("White");
         ArrayList<Chessman> blackChessman = new ArrayList<Chessman>();
@@ -149,7 +161,9 @@ public class ChessWarGame {
         playerAndChess.put(black, blackChessman);
         playerAndChess.put(white, whiteChessman);
         for (Player player : playerAndChess.keySet()) {
-            playerAndChess.get(player).add(new King(player));
+            King king = new King(player);
+            player.setKing(king);
+            playerAndChess.get(player).add(king);
             playerAndChess.get(player).add(new Queen(player));
             playerAndChess.get(player).add(new Rook(player));
             playerAndChess.get(player).add(new Knight(player));
@@ -246,5 +260,13 @@ public class ChessWarGame {
 
     public HashMap<Player, ArrayList<Chessman>> getPlayerAndChess() {
         return playerAndChess;
+    }
+
+    public boolean isDebugMode() {
+        return debugMode;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
     }
 }

@@ -32,6 +32,10 @@ public class Player {
         return Objects.hash(name);
     }
 
+    public King getKing() {
+        return king;
+    }
+
     public void setKing(King king) {
         this.king = king;
     }

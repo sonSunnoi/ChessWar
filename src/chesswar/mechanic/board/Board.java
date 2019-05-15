@@ -1,5 +1,6 @@
 package chesswar.mechanic.board;
 
+import chesswar.entity.Chessman;
 import chesswar.gui.BoardGUI;
 import chesswar.gui.FieldGUI;
 import chesswar.mechanic.event.EventSystem;
@@ -52,6 +53,28 @@ public final class Board {
             return null;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Position find(Field field) {
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if(field == board[y][x]){
+                    return new Position(x + 1, y + 1);
+                }
+            }
+        }
+        return null;
+    }
+
+    public Position find(Chessman chessman){
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                if(chessman == board[y][x].getChessman()){
+                    return new Position(x + 1, y + 1);
+                }
+            }
         }
         return null;
     }

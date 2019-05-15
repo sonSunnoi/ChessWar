@@ -105,9 +105,9 @@ public class ChessWarGame {
             resetAction();
         } else if (field.getHighlight() == Highlight.ATTACK) {
             if (chessman.getAttackType() == AttackType.MELEE) {
-                turnController.getTurn().executeCommand(new MeleeAttackCommand(chessman, field.getChessman()));
+                turnController.getTurn().executeCommand(new MeleeAttackCommand(chessman, field));
             } else {
-                turnController.getTurn().executeCommand(new RangeAttackCommand(chessman, field.getChessman()));
+                turnController.getTurn().executeCommand(new RangeAttackCommand(chessman, field));
             }
             eventSystem.dispatch(new EntityAttackEvent(chessman, field.getChessman()));
         } else if (field.getHighlight() == Highlight.MOVE) {

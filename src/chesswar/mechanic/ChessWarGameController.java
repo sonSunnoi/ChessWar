@@ -64,6 +64,7 @@ public class ChessWarGameController implements Listener {
         }
         chessWarGame.getTurnController().update();
         chessWarGame.getBoardController().getBoardGUI().update();
+        //TODO: annoucement game win
 
     }
 

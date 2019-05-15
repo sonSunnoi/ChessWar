@@ -1,18 +1,22 @@
 package chesswar.mechanic.command;
 
 import chesswar.entity.Chessman;
+import chesswar.mechanic.board.Field;
 
 public final class MeleeAttackCommand implements Command {
 
     private static int COST = 1;
     private Chessman attacker;
     private Chessman victim;
+    private Field victimField;
     private boolean isMovedBeforeAttack;
     private int victimHealtBeforeAttacked;
 
-    public MeleeAttackCommand(Chessman attacker, Chessman victim) {
+    public MeleeAttackCommand(Chessman attacker, Field victimField) {
         this.attacker = attacker;
-        this.victim = victim;
+        this.victimField = victimField;
+        this.victim = victimField.getChessman();
+
         isMovedBeforeAttack = attacker.isMoved();
         victimHealtBeforeAttacked = victim.getHp();
     }
@@ -25,6 +29,7 @@ public final class MeleeAttackCommand implements Command {
     @Override
     public void unexecute() {
         victim.setHp(victimHealtBeforeAttacked);
+        victimField.setChessman(victim);
         attacker.setAttacked(false);
         attacker.setMoved(isMovedBeforeAttack);
     }

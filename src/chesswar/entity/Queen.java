@@ -17,6 +17,7 @@ public class Queen extends Chessman {
         setDamage(BASE_DAMAGE);
         setDefense(BASE_DEFENSE);
         setHp(BASE_HP);
+        penetrationBuff = false;
         setMovementBehavior(new PawnMovementBehavior(this));
         setAttackBehavior(new QueenAttackBehavior(this));
     }

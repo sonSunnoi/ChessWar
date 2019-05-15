@@ -17,6 +17,7 @@ public class Knight extends Chessman {
         setDamage(BASE_DAMAGE);
         setDefense(BASE_DEFENSE);
         setHp(BASE_HP);
+        penetrationBuff = false;
         setMovementBehavior(new KnightMovementBehavior(this));
         setAttackBehavior(new MeleeAttackBehavior(this));
     }

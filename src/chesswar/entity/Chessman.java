@@ -16,6 +16,7 @@ public abstract class Chessman {
     protected boolean isAttacked;
     protected boolean isMoved;
     protected boolean isAlive;
+    protected boolean penetrationBuff;
 
     protected Player owner;
     protected ChessType chessType;
@@ -35,7 +36,8 @@ public abstract class Chessman {
     }
 
     public int receiveDamage(Chessman attacker) {
-        int inflict = Math.max(0, attacker.getDamage() - this.getDefense());
+        int def = attacker.isPenetrationBuff()? 0 : this.getDefense();
+        int inflict = Math.max(0, attacker.getDamage() - def);
         setHp(this.hp - inflict);
         return inflict;
     }
@@ -119,6 +121,14 @@ public abstract class Chessman {
         isAlive = alive;
     }
 
+    public boolean isPenetrationBuff() {
+        return penetrationBuff;
+    }
+
+    public void setPenetrationBuff(boolean penetrationBuff) {
+        this.penetrationBuff = penetrationBuff;
+    }
+
     public ChessType getChessType() {
         return chessType;
     }
@@ -145,4 +155,6 @@ public abstract class Chessman {
     public int hashCode() {
         return Objects.hash(owner, chessType, attackType);
     }
+
+
 }

@@ -19,6 +19,7 @@ public class King extends Chessman {
         setDamage(BASE_DAMAGE);
         setDefense(BASE_DEFENSE);
         setHp(BASE_HP);
+        penetrationBuff = true;
         setMovementBehavior(new KingMovementBehavior(this));
         setAttackBehavior(new KingAttackBehavior(this));
     }

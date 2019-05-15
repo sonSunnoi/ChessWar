@@ -26,7 +26,7 @@ public class ChessWarGame {
     private HashMap<Player, ArrayList<Chessman>> playerAndChess;
     private Player black;
     private Player white;
-    private boolean debugMode = false;
+    private boolean debugMode = true;
     private ChessmanData chessmanDataFirst;
     private ChessmanData chessmanDataSecond;
 
@@ -75,24 +75,27 @@ public class ChessWarGame {
             }
             //debug bishop by concrete
             if (chessman.getChessType() == ChessType.BISHOP) {
-                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, 1)))) {
-                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))))).unhighlight();
-                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))));
+                try {
+                    if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, 1)))) {
+                        boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))))).unhighlight();
+                        cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, 2))));
+                    }
+                    if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, 1)))) {
+                        boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))))).unhighlight();
+                        cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))));
+                    }
+                    if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, -1)))) {
+                        boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))))).unhighlight();
+                        cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))));
+                    }
+                    if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, -1)))) {
+                        boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))))).unhighlight();
+                        cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))));
+                    }
+                } catch (Exception e) {
                 }
-                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, 1)))) {
-                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))))).unhighlight();
-                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, 2))));
-                }
-                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(1, -1)))) {
-                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))))).unhighlight();
-                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(2, -2))));
-                }
-                if (!cacheHighlightPosition.contains(field.getPosition().sum(new Position(-1, -1)))) {
-                    boardController.getBoard().getField(cacheHighlightPosition.get(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))))).unhighlight();
-                    cacheHighlightPosition.remove(cacheHighlightPosition.indexOf(field.getPosition().sum(new Position(-2, -2))));
-                }
-            }
 
+            }
             field.highlight(Highlight.SELF);
             cacheHighlightPosition.add(position);
         }
@@ -135,12 +138,12 @@ public class ChessWarGame {
         cacheFirstActionPosition = null;
         cacheSecondActionPosition = null;
         isConfirmed = false;
-        if(!white.isAlive()){
+        if (!white.isAlive()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Black wins the game!");
             alert.showAndWait();
         }
-        if(!black.isAlive()){
+        if (!black.isAlive()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("White wins the game!");
             alert.showAndWait();

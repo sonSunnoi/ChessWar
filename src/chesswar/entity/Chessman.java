@@ -1,10 +1,8 @@
 package chesswar.entity;
 
 import chesswar.mechanic.Player;
-import chesswar.mechanic.Position;
 import chesswar.entity.attackbehavior.AttackBehavior;
 import chesswar.entity.movementbehavior.MovementBehavior;
-import chesswar.mechanic.event.EventSystem;
 
 import java.util.Objects;
 
@@ -16,7 +14,9 @@ public abstract class Chessman {
     protected boolean isAttacked;
     protected boolean isMoved;
     protected boolean isAlive;
+
     protected boolean penetrationBuff;
+    protected boolean isKingBlessed;
 
     protected Player owner;
     protected ChessType chessType;
@@ -29,6 +29,7 @@ public abstract class Chessman {
         this.owner = player;
         isAttacked = false;
         isMoved = false;
+        isKingBlessed = false;
     }
 
     public int attack(Chessman victim) {
@@ -127,6 +128,28 @@ public abstract class Chessman {
 
     public void setPenetrationBuff(boolean penetrationBuff) {
         this.penetrationBuff = penetrationBuff;
+    }
+
+    public boolean isKingBlessed() {
+        return isKingBlessed;
+    }
+
+    //
+    public void toggleKingBlessed(boolean kingBlessed) {
+        if(this instanceof King){
+            isKingBlessed = false;
+        } else {
+            if(isKingBlessed != kingBlessed) {
+                isKingBlessed = kingBlessed;
+                if(isKingBlessed == true){
+                    setDamage(damage + 1);
+                    setDefense(defense + 1);
+                } else {
+                    setDamage(damage - 1);
+                    setDefense(defense - 1);
+                }
+            }
+        }
     }
 
     public ChessType getChessType() {

@@ -34,6 +34,7 @@ public class Turn {
     public void unexecuteCommand() {
         setTurnCost(turnCost - commands.peek().getCommandCost());
         commands.pop().unexecute();
+
     }
 
     public void setTurnCost(int turnCost) throws UnexpectTurnCostException {

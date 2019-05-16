@@ -35,7 +35,7 @@ public class ChessmanData extends VBox {
 
 
     public void update() {
-        try{
+        try {
             if (chessman.isAlly(thisTurnPlayer)) {
                 side.setText(ALLY);
             } else {
@@ -44,15 +44,21 @@ public class ChessmanData extends VBox {
             type.setText("Type: " + chessman.getChessType());
             attackType.setText("Attack Type: " + chessman.getAttackType());
             hp.setText("HP: " + chessman.getHp());
-            attack.setText("ATK: " + chessman.getDamage());
-            defense.setText("DEF: " + chessman.getDefense());
-        } catch (NullPointerException e){
+            if (chessman.isKingBlessed()) {
+                attack.setText("ATK: " + chessman.getDamage());
+                defense.setText("DEF: " + chessman.getDefense());
+            } else {
+                attack.setText("ATK: " + chessman.getDamage());
+                defense.setText("DEF: " + chessman.getDefense());
+            }
+
+        } catch (NullPointerException e) {
             reset();
         }
 
     }
 
-    public void reset(){
+    public void reset() {
         side.setText("N/A");
         type.setText("Type: N/A");
         attackType.setText("Attack Type: N/A");
@@ -60,6 +66,7 @@ public class ChessmanData extends VBox {
         attack.setText("ATK: N/A");
         defense.setText("DEF: N/A");
     }
+
     public Chessman getChessman() {
         return chessman;
     }

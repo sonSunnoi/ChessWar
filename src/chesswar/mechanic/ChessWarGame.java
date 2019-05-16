@@ -26,7 +26,7 @@ public class ChessWarGame {
     private HashMap<Player, ArrayList<Chessman>> playerAndChess;
     private Player black;
     private Player white;
-    private boolean debugMode = true;
+    private boolean debugMode = false;
     private ChessmanData chessmanDataFirst;
     private ChessmanData chessmanDataSecond;
 
@@ -47,6 +47,8 @@ public class ChessWarGame {
     private boolean isConfirmed = true;
 
     public void setFirstAction(Position position) {
+        /**king blessed*/
+        updateKingBlessedBuff();
         Field field = boardController.getBoard().getField(position); //field of clicked position
         Chessman chessman = field.getChessman(); //chessman that going to action
         if (chessman != null && (chessman.getOwner().equals(turnController.getTurn().getPlayer()) || debugMode)) {
@@ -121,6 +123,9 @@ public class ChessWarGame {
             } else {
                 turnController.getTurn().executeCommand(new RangeMoveCommand(chessman, boardController.getBoard().getField(cacheFirstActionPosition), field));
             }
+            /** kingBlessedBuff */
+            updateKingBlessedBuff();
+
             eventSystem.dispatch(new EntityMoveEvent(chessman, boardController.getBoard().getField(cacheFirstActionPosition), field));
         } else {
             System.out.println("Error at setSecondAction");
@@ -154,7 +159,7 @@ public class ChessWarGame {
         cacheHighlightPosition.stream().forEach(pos -> boardController.getBoard().getField(pos).unhighlight());
     }
 
-    public void init() {
+    public void init()  {
         playerAndChess = new HashMap<>();
         black = new Player("Black");
         white = new Player("White");
@@ -207,6 +212,49 @@ public class ChessWarGame {
         boardController.getBoard().getField(new Position(11, 10)).setChessman(playerAndChess.get(white).get(11));
 
         boardController.getBoardGUI().update();
+        /** king bleassed */
+        updateKingBlessedBuff();
+        updateKingBlessedBuff();
+    }
+
+    public void updateKingBlessedBuff(){
+//        Position kingPosition = boardController.getBoard().find(player.getKing());
+//        playerAndChess.get(turnController.getTurn().getPlayer()).forEach(chessman1 -> {
+//            boolean isChecked = false;
+//            for(Position pos : King.getKingBlessedAura()){
+//                if(kingPosition.sum(pos).equals(boardController.getBoard().find(chessman1))){
+//                    System.out.println(chessman1.getOwner() + " " + chessman1.getChessType());
+//                    isChecked = true;
+//                }
+//            }
+//            if(!isChecked)
+//                chessman1.toggleKingBlessed(false);
+//        });
+        Position whiteKingPos = boardController.getBoard().find(playerAndChess.get(white).get(playerAndChess.get(white).indexOf(white.getKing())));
+        playerAndChess.get(white).forEach(chessman1 -> {
+            boolean isChecked = false;
+            for(Position pos : King.getKingBlessedAura()){
+                if(whiteKingPos.sum(pos).equals(boardController.getBoard().find(chessman1))){
+                    chessman1.toggleKingBlessed(true);
+                    isChecked = true;
+                }
+            }
+            if(!isChecked)
+                chessman1.toggleKingBlessed(false);
+        });
+
+        Position blackKingPos = boardController.getBoard().find(playerAndChess.get(black).get(playerAndChess.get(black).indexOf(black.getKing())));
+        playerAndChess.get(black).forEach(chessman1 -> {
+            boolean isChecked = false;
+            for(Position pos : King.getKingBlessedAura()){
+                if(blackKingPos.sum(pos).equals(boardController.getBoard().find(chessman1))){
+                    chessman1.toggleKingBlessed(true);
+                    isChecked = true;
+                }
+            }
+            if(!isChecked)
+                chessman1.toggleKingBlessed(false);
+        });
     }
 
     public ArrayList<Position> getCacheHighlightPosition() {

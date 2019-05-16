@@ -39,4 +39,9 @@ public class Player {
     public void setKing(King king) {
         this.king = king;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

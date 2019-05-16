@@ -29,6 +29,7 @@ public class ChessWarGameController implements Listener {
     @EventHandler
     public void onFieldClickEvent(FieldClickEvent event) {
         Position click = event.getField().getPosition();
+//        chessWarGame.updateKingBlessedBuff(chessWarGame.getTurnController().getTurn().getPlayer());
         if (chessWarGame.getCacheFirstActionPosition() == null) {
 
             chessWarGame.setFirstAction(click);
@@ -64,10 +65,12 @@ public class ChessWarGameController implements Listener {
         }
         chessWarGame.getTurnController().update();
         chessWarGame.getBoardController().getBoardGUI().update();
+//        chessWarGame.updateKingBlessedBuff(chessWarGame.getTurnController().getTurn().getPlayer());
 
     }
 
     public void update(){
+        chessWarGame.updateKingBlessedBuff();
         chessWarGame.getTurnController().update();
         chessWarGame.getBoardController().getBoardGUI().update();
         chessWarGame.getChessmanDataFirst().setChessman(null);
